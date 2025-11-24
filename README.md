@@ -8,11 +8,11 @@ SmartKNN supports both **classification** and **regression**, requires zero manu
 
 #  Badges
 
-![PyPI](https://img.shields.io/pypi/v/smart-knn)
-![Python](https://img.shields.io/badge/Python-3.8+-blue)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Status](https://img.shields.io/badge/Status-Stable-success)
-![Downloads](https://img.shields.io/pypi/dm/smart-knn?label=Downloads)
+[![PyPI](https://img.shields.io/pypi/v/smart-knn)](https://pypi.org/project/smart-knn/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/Status-Stable-success)](#)
+[![Downloads](https://img.shields.io/pypi/dm/smart-knn?label=Downloads)](https://pypi.org/project/smart-knn/)
 
 ---
 
@@ -196,13 +196,13 @@ benchmarks/
 
 ---
 
-#  Benchmark Visuals (Optional)
+#  Benchmark Visuals
 
 ```
 ![Accuracy Heatmap](benchmarks/heatmaps/class_accuracy.png)
 ![Regression MSE](benchmarks/heatmaps/reg_mse.png)
-```
 
+```
 ---
 
 #  Roadmap
