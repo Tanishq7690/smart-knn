@@ -16,6 +16,7 @@ SmartKNN supports both **classification** and **regression**, requires zero manu
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.17713746-blue.svg)](https://doi.org/10.5281/zenodo.17713746)
 [![Hugging Face](https://img.shields.io/badge/HuggingFace-Model-yellow.svg)](https://huggingface.co/JashuXo/smart-knn)
 [![Medium](https://img.shields.io/badge/Read%20on-Medium-orange.svg)](https://medium.com/@thatipamulajashwanthgoud/a-new-smarter-take-on-knn-where-feature-weighting-noise-resilience-and-interpretability-meet-5fc284892669)
+[![Kaggle Benchmarks](https://img.shields.io/badge/Kaggle-Benchmarks-blueviolet)](https://www.kaggle.com/code/jashwanththatipamula/smartknn-benchmarks-proof)
 
 
 ---
