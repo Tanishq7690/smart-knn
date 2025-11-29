@@ -13,6 +13,10 @@ SmartKNN supports both **classification** and **regression**, requires zero manu
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-Stable-success)](#)
 [![Downloads](https://img.shields.io/pypi/dm/smart-knn?label=Downloads)](https://pypi.org/project/smart-knn/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.17713746-blue.svg)](https://doi.org/10.5281/zenodo.17713746)
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-Model-yellow.svg)](https://huggingface.co/JashuXo/smart-knn)
+[![Medium](https://img.shields.io/badge/Read%20on-Medium-orange.svg)](https://medium.com/@thatipamulajashwanthgoud/a-new-smarter-take-on-knn-where-feature-weighting-noise-resilience-and-interpretability-meet-5fc284892669)
+
 
 ---
 
@@ -190,7 +194,7 @@ model.X_.shape
 
 ---
 
-# 📁 Project Structure
+#  Project Structure
 
 ```
 smart_knn/
@@ -253,7 +257,9 @@ If you like SmartKNN, star  the repository.
 
 ---
 
-# 🔗 Links
-
-* **PyPI:** [https://pypi.org/project/smart-knn](https://pypi.org/project/smart-knn)
-* **GitHub:** [https://github.com/thatipamula-jashwanth/smart-knn](https://github.com/thatipamula-jashwanth/smart-knn)
+#  Links
+* **PyPI:** https://pypi.org/project/smart-knn
+* **GitHub:** https://github.com/thatipamula-jashwanth/smart-knn
+* **Zenodo DOI:** https://doi.org/10.5281/zenodo.17713746
+* **Hugging Face:** https://huggingface.co/JashuXo/smart-knn
+* **Medium Article:** https://medium.com/@thatipamulajashwanthgoud/a-new-smarter-take-on-knn-where-feature-weighting-noise-resilience-and-interpretability-meet-5fc284892669
