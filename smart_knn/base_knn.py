@@ -22,9 +22,14 @@ logger.setLevel(logging.INFO)
 
 
 class SmartKNN:
-    def __init__(self, k=5, weight_threshold=0.0):
+    def __init__(self, k=5, weight_threshold=0.0, alpha=0.4, beta=0.3, gamma=0.3):
         self.k = int(k)
         self.weight_threshold = float(weight_threshold)
+
+        self.alpha = float(alpha)
+        self.beta = float(beta)
+        self.gamma = float(gamma)
+
         self.fitted = False
 
     def _validate_schema_array(self, X):
@@ -47,7 +52,6 @@ class SmartKNN:
         X = ensure_numpy(X)
         y = ensure_numpy(y).reshape(-1)
 
-        
         X = np.nan_to_num(X, nan=np.nan, posinf=1e9, neginf=-1e9)
 
         if X.shape[0] != y.shape[0]:
@@ -66,14 +70,20 @@ class SmartKNN:
 
         X_norm, self.mean_, self.std_ = normalize(X)
 
-        w = learn_feature_weights(X_norm, y)
+        w = learn_feature_weights(
+            X_norm,
+            y,
+            alpha=self.alpha,
+            beta=self.beta,
+            gamma=self.gamma,
+        )
         w = clip_weights(w)
 
         try:
             X_f, w_f, mask = filter_low_weights(X_norm, w, threshold=self.weight_threshold, return_mask=True)
         except TypeError:
             X_f, w_f = filter_low_weights(X_norm, w, threshold=self.weight_threshold)
-            mask = w > self.weight_threshold       # FIX 2
+            mask = w > self.weight_threshold
 
         if X_f.shape[1] == 0:
             raise RuntimeError("All features filtered out — lower weight_threshold.")
@@ -98,7 +108,6 @@ class SmartKNN:
         if q_arr.shape[0] != self.expected_n_features_:
             raise ValueError("Query feature length mismatch.")
 
-        # FIX 3: sanitize input same as fit()
         q_arr = np.nan_to_num(q_arr, nan=np.nan, posinf=1e9, neginf=-1e9)
 
         mean_fallback = np.where(np.isnan(self.mean_), 0.0, self.mean_)
@@ -126,14 +135,16 @@ class SmartKNN:
         if Xq.ndim == 1:
             Xq = Xq.reshape(1, -1)
 
+        if not hasattr(self, "_cls_warn"):
+            logger.warning(
+                "Classification mode is temporarily disabled in this version. "
+                "SmartKNN will output regression predictions (mean of neighbors)."
+            )
+            self._cls_warn = True
+
         preds = []
         for q in Xq:
             idx, _ = self.kneighbors(q)
-            neigh_y = self.y_[idx]
+            preds.append(float(np.mean(self.y_[idx])))
 
-            if np.issubdtype(neigh_y.dtype, np.floating):
-                preds.append(float(np.mean(neigh_y)))
-            else:
-                preds.append(Counter(neigh_y).most_common(1)[0][0])
-
-        return np.array(preds, dtype=object)
+        return np.array(preds, dtype=float)

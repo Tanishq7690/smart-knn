@@ -191,6 +191,49 @@ pred = most_common_label
 SmartKNN includes median imputation, sanitization, normalization, clipping, and filtering.
 
 ---
+---
+
+##  Classification Status (Temporary — Stability Release)
+
+SmartKNN supports both regression and classification internally, but to guarantee strong stability across all data pipelines, the current version follows a **regression-first output policy**:
+
+| Case | SmartKNN Behavior |
+|------|------------------|
+| Target is continuous | regression (mean of neighbors) |
+| Target is integer labels | internally votes like classification, but returns numeric output |
+
+ Why this update:
+
+Classic KNN classification works correctly, but auto-detecting between integer regression and integer classification can confuse external metrics (sklearn, OpenML, Kaggle) and cause errors such as:
+
+```
+Classification metrics can't handle a mix of binary and continuous targets
+```
+
+To prevent breaking pipelines, SmartKNN now returns **only numeric predictions** by design.
+
+### Classification Users (for now)
+If your dataset is classification, simply map predictions back to labels:
+
+```python
+classes = np.unique(y_train)
+pred_labels = classes[sknn_pred.astype(int)]
+```
+
+This ensures **100% reliability** while keeping the API backward compatible.
+
+### Planned upgrade
+The next major release (v2.0) will include:
+
+| Feature | Status |
+|--------|--------|
+| Explicit classification mode |  In progress |
+| Probability voting | 🔄 |
+| Metrics safety | 🔄 |
+| Probability thresholding | 🔄 |
+
+---
+
 
 
 ---

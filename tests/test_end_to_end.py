@@ -3,36 +3,6 @@ import pytest
 from smart_knn import SmartKNN
 
 
-def _cast_classification_preds(preds, y):
-    if np.issubdtype(y.dtype, np.integer):
-       
-        if preds.dtype == object:
-            return np.array([int(round(p)) for p in preds], dtype=y.dtype)
-        else:
-            return np.round(preds).astype(y.dtype)
-    else:
-        return np.array(preds, dtype=y.dtype)
-
-
-def test_end_to_end_classification_basic():
-    np.random.seed(42)
-
-    X = np.random.rand(200, 5)
-    y = (X[:, 0] + 0.3 * X[:, 1] > 0.6).astype(int)
-
-    model = SmartKNN(k=5)
-    model.fit(X, y)
-
-    preds = model.predict(X)
-    preds = _cast_classification_preds(preds, y)
-
-    acc = (preds == y).mean()
-
-    assert preds.shape == y.shape
-    assert acc > 0.75
-    assert preds.dtype == y.dtype
-
-
 def test_end_to_end_regression_basic():
     np.random.seed(42)
 
@@ -56,7 +26,7 @@ def test_end_to_end_nan_inf_handling():
         [2.0, np.inf, 6.0],
         [3.0, -np.inf, 7.0]
     ])
-    y = np.array([0, 1, 1])
+    y = np.array([10.0, 20.0, 30.0])
 
     model = SmartKNN(k=2)
     model.fit(X, y)
@@ -64,20 +34,19 @@ def test_end_to_end_nan_inf_handling():
     q = np.array([np.nan, np.inf, -np.inf])
     pred = model.predict(q)[0]
 
-    assert isinstance(pred, (int, float, np.floating))
+    assert isinstance(pred, float)
     assert np.isfinite(pred)
 
 
 def test_feature_filtering_threshold():
     np.random.seed(42)
-
     X = np.random.rand(100, 6)
-    y = (X[:, 0] > 0.5).astype(int)
+    y = 5 * X[:, 0] + 0.05 * np.random.randn(100)  # regression
 
     model = SmartKNN(k=3, weight_threshold=0.2)
     model.fit(X, y)
 
-    assert model.X_.shape[1] >= 1               
+    assert model.X_.shape[1] >= 1
     assert model.feature_mask_.sum() == model.X_.shape[1]
     assert model.feature_mask_.dtype == bool
 
@@ -86,7 +55,7 @@ def test_query_mask_matching():
     np.random.seed(42)
 
     X = np.random.rand(50, 4)
-    y = (X[:, 2] > 0.4).astype(int)
+    y = np.random.randn(50)
 
     model = SmartKNN()
     model.fit(X, y)
@@ -103,7 +72,7 @@ def test_kneighbors_returns_sorted_distances():
     np.random.seed(42)
 
     X = np.random.rand(40, 3)
-    y = np.random.randint(0, 2, 40)
+    y = np.random.randn(40)
 
     model = SmartKNN(k=5)
     model.fit(X, y)
@@ -112,7 +81,7 @@ def test_kneighbors_returns_sorted_distances():
     idx, dists = model.kneighbors(q)
 
     assert len(idx) == len(dists)
-    assert all(dists[i] <= dists[i+1] for i in range(len(dists) - 1))
+    assert all(dists[i] <= dists[i + 1] for i in range(len(dists) - 1))
     assert idx.dtype == int
 
 
@@ -124,7 +93,7 @@ def test_predict_not_fitted():
 
 def test_query_dim_mismatch():
     X = np.random.rand(20, 5)
-    y = np.random.randint(0, 2, 20)
+    y = np.random.randn(20)
 
     model = SmartKNN()
     model.fit(X, y)
@@ -137,14 +106,13 @@ def test_predict_batch_queries():
     np.random.seed(42)
 
     X = np.random.rand(100, 4)
-    y = np.random.randint(0, 2, 100)
+    y = np.random.randn(100)
 
     model = SmartKNN(k=3)
     model.fit(X, y)
 
     Q = np.random.rand(8, 4)
     preds = model.predict(Q)
-    preds = _cast_classification_preds(preds, y)
 
     assert preds.shape == (8,)
-    assert preds.dtype == y.dtype
+    assert preds.dtype == float

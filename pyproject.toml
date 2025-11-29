@@ -2,9 +2,10 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+
 [project]
 name = "smart-knn"
-version = "0.1.0"
+version = "0.1.1" 
 description = "A smarter, weighted, feature-selective KNN algorithm with automatic preprocessing."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -14,14 +15,37 @@ authors = [
 requires-python = ">=3.8"
 
 dependencies = [
-  "numpy>=2.2.6,<3.0",
-  "pandas>=2.3.3,<3.0",
-  "scikit-learn>=1.7.2,<2.0",
-  "joblib>=1.5.2,<2.0"
+  "numpy>=1.21",
+  "pandas>=1.5",
+  "scikit-learn>=1.2",
+  "joblib>=1.2"
 ]
+
+keywords = [
+  "knn",
+  "machine-learning",
+  "smart-knn",
+  "weighted-knn",
+  "feature-selection",
+  "distance-learning",
+  "auto-ml",
+  "regression",
+  "classification"
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
 
 [tool.setuptools]
 include-package-data = true
+
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -31,6 +55,8 @@ exclude = [
   "docs*",
 ]
 
+
 [project.urls]
-Home = "https://github.com/thatipamula-jashwanth/smart-knn"
+Homepage = "https://github.com/thatipamula-jashwanth/smart-knn"
+Documentation = "https://github.com/thatipamula-jashwanth/smart-knn"
 Issues = "https://github.com/thatipamula-jashwanth/smart-knn/issues"

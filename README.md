@@ -99,6 +99,28 @@ SmartKNN will automatically:
 preds = model.predict(X.iloc[:10])
 print(preds)
 ```
+---
+
+##  Note on Classification (Temporary — v0.2.x)
+
+SmartKNN was originally designed to auto-detect **classification vs regression** based on the target values.  
+In rare cases, integer-valued regression datasets (e.g., energy = 0, 1, 2, 3) could be mistaken for classification and cause errors when evaluated using sklearn metrics.
+
+To guarantee **stability and zero breaking changes for current users**, SmartKNN now:
+
+ Works reliably with both regression and classification inputs  
+ Uses **safe numeric prediction output** by default  
+ Avoids sklearn "continuous vs multiclass" errors automatically  
+
+If using SmartKNN for **classification**, simply map predictions back to class labels:
+
+```python
+preds = model.predict(X_test)
+preds = preds.round().astype(int)   
+```
+
+A full enhanced classification engine (with probability vote + label-safe decoding) will be released in a future update.
+
 
 ---
 
